@@ -30,7 +30,7 @@ IF(RV_TARGET_WINDOWS
   MESSAGE(STATUS "PyImGui: Testing reduced Windows Release workaround flags")
 ENDIF()
 
-LIST(APPEND _configure_options "-S ${CMAKE_BINARY_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle/external/imgui")
+LIST(APPEND _configure_options "-S ${RV_DEPS_BASE_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle/external/imgui")
 LIST(APPEND _configure_options "-B ${_build_dir}")
 
 # Set the correct library name - Windows needs .pyd extension for Python modules
@@ -71,12 +71,12 @@ EXTERNALPROJECT_ADD(
   GIT_TAG "76cbc64953858ff2a8699aa1f7e8c7cb77e3b17a"
   DOWNLOAD_DIR ${RV_DEPS_DOWNLOAD_DIR}
   DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-  SOURCE_DIR ${CMAKE_BINARY_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle
+  SOURCE_DIR ${RV_DEPS_BASE_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle
   GIT_SUBMODULES "" GIT_SUBMODULES_RECURSE 0
   PATCH_COMMAND
     ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/imgui/CMakeLists_PyImGUI.cmake
-    ${CMAKE_BINARY_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle/external/imgui/CMakeLists.txt && ${CMAKE_COMMAND} -E copy_if_different
-    ${CMAKE_CURRENT_SOURCE_DIR}/imgui/pybind_imgui_module.cpp ${CMAKE_BINARY_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle/external/imgui/bindings &&
+    ${RV_DEPS_BASE_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle/external/imgui/CMakeLists.txt && ${CMAKE_COMMAND} -E copy_if_different
+    ${CMAKE_CURRENT_SOURCE_DIR}/imgui/pybind_imgui_module.cpp ${RV_DEPS_BASE_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle/external/imgui/bindings &&
     ${_patch_command_for_imgui_bindings}
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND

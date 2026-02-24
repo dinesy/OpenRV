@@ -30,7 +30,7 @@ IF(RV_TARGET_WINDOWS
   MESSAGE(STATUS "PyImplot: Applying Windows Release workaround flags to prevent MSVC hangs")
 ENDIF()
 
-LIST(APPEND _configure_options "-S ${CMAKE_BINARY_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle-pyimplot/external/implot")
+LIST(APPEND _configure_options "-S ${RV_DEPS_BASE_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle-pyimplot/external/implot")
 LIST(APPEND _configure_options "-B ${_build_dir}")
 
 # Set the correct library name - Windows needs .pyd extension for Python modules
@@ -67,13 +67,13 @@ EXTERNALPROJECT_ADD(
   GIT_TAG "76cbc64953858ff2a8699aa1f7e8c7cb77e3b17a"
   DOWNLOAD_DIR ${RV_DEPS_DOWNLOAD_DIR}
   DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-  SOURCE_DIR ${CMAKE_BINARY_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle-pyimplot
+  SOURCE_DIR ${RV_DEPS_BASE_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle-pyimplot
   GIT_SUBMODULES "" GIT_SUBMODULES_RECURSE 0
   PATCH_COMMAND
     ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/imgui/CMakeLists_PyImplot.cmake
-    ${CMAKE_BINARY_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle-pyimplot/external/implot/CMakeLists.txt && ${CMAKE_COMMAND} -E copy_if_different
+    ${RV_DEPS_BASE_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle-pyimplot/external/implot/CMakeLists.txt && ${CMAKE_COMMAND} -E copy_if_different
     ${CMAKE_CURRENT_SOURCE_DIR}/imgui/pybind_implot_module.cpp
-    ${CMAKE_BINARY_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle-pyimplot/external/implot/bindings/pybind_implot_module.cpp
+    ${RV_DEPS_BASE_DIR}/RV_DEPS_IMGUI/deps/imgui-bundle-pyimplot/external/implot/bindings/pybind_implot_module.cpp
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${CMAKE_COMMAND} ${_configure_options} -DCMAKE_PREFIX_PATH=$ENV{QT_HOME}/lib/cmake -DPython_ROOT=${RV_DEPS_BASE_DIR}/RV_DEPS_PYTHON3/install

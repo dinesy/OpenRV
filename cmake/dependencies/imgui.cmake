@@ -57,7 +57,7 @@ EXTERNALPROJECT_ADD(
   GIT_TAG ${RV_DEPS_IMPLOT_TAG}
   DOWNLOAD_DIR ${RV_DEPS_DOWNLOAD_DIR}
   DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-  SOURCE_DIR ${CMAKE_BINARY_DIR}/${_target}/deps/implot
+  SOURCE_DIR ${RV_DEPS_BASE_DIR}/${_target}/deps/implot
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""
@@ -78,7 +78,7 @@ EXTERNALPROJECT_ADD(
   GIT_TAG ${RV_DEPS_IMGUI_BACKEND_QT_TAG}
   DOWNLOAD_DIR ${RV_DEPS_DOWNLOAD_DIR}
   DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-  SOURCE_DIR ${CMAKE_BINARY_DIR}/${_target}/deps/imgui-backend-qt
+  SOURCE_DIR ${RV_DEPS_BASE_DIR}/${_target}/deps/imgui-backend-qt
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""
@@ -94,7 +94,7 @@ EXTERNALPROJECT_ADD(
   GIT_TAG ${RV_DEPS_IMGUI_NODE_EDITOR_TAG}
   DOWNLOAD_DIR ${RV_DEPS_DOWNLOAD_DIR}
   DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-  SOURCE_DIR ${CMAKE_BINARY_DIR}/${_target}/deps/imgui-node-editor
+  SOURCE_DIR ${RV_DEPS_BASE_DIR}/${_target}/deps/imgui-node-editor
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""
@@ -127,12 +127,12 @@ EXTERNALPROJECT_ADD(
   DOWNLOAD_NAME ${_target}_${_version}.zip
   DOWNLOAD_DIR ${RV_DEPS_DOWNLOAD_DIR}
   DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-  SOURCE_DIR ${CMAKE_BINARY_DIR}/${_target}/src
+  SOURCE_DIR ${RV_DEPS_BASE_DIR}/${_target}/src
   PATCH_COMMAND
-    ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/imgui/CMakeLists.txt ${CMAKE_BINARY_DIR}/${_target}/src/CMakeLists.txt && ${CMAKE_COMMAND} -E
-    copy_directory ${CMAKE_BINARY_DIR}/${_target}/deps/implot ${CMAKE_BINARY_DIR}/${_target}/src/implot && ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_BINARY_DIR}/${_target}/deps/imgui-backend-qt/backends ${CMAKE_BINARY_DIR}/${_target}/src/backends && ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_BINARY_DIR}/${_target}/deps/imgui-node-editor ${CMAKE_BINARY_DIR}/${_target}/src/imgui-node-editor && ${_patch_command_for_imgui_backend_qt} &&
+    ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/imgui/CMakeLists.txt ${RV_DEPS_BASE_DIR}/${_target}/src/CMakeLists.txt && ${CMAKE_COMMAND} -E
+    copy_directory ${RV_DEPS_BASE_DIR}/${_target}/deps/implot ${RV_DEPS_BASE_DIR}/${_target}/src/implot && ${CMAKE_COMMAND} -E copy_directory
+    ${RV_DEPS_BASE_DIR}/${_target}/deps/imgui-backend-qt/backends ${RV_DEPS_BASE_DIR}/${_target}/src/backends && ${CMAKE_COMMAND} -E copy_directory
+    ${RV_DEPS_BASE_DIR}/${_target}/deps/imgui-node-editor ${RV_DEPS_BASE_DIR}/${_target}/src/imgui-node-editor && ${_patch_command_for_imgui_backend_qt} &&
     ${_patch_command_for_imgui}
   CONFIGURE_COMMAND ${CMAKE_COMMAND} ${_configure_options} -DFIND_QT_VERSION=${_find_qt_version} -DCMAKE_PREFIX_PATH=${_qt_location}/lib/cmake
   BUILD_COMMAND ${_cmake_build_command}

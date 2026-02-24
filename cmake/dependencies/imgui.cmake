@@ -120,6 +120,8 @@ SET(_patch_command_for_imgui
     patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/patch/imgui_cpp_h.patch
 )
 
+LIST(APPEND _configure_options "-DCMAKE_INSTALL_RPATH=")
+
 EXTERNALPROJECT_ADD(
   ${_target}
   URL ${_imgui_download_url}

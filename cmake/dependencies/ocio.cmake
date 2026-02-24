@@ -149,6 +149,8 @@ LIST(APPEND _configure_options "-DZLIB_ROOT=${RV_DEPS_ZLIB_ROOT_DIR}")
 # OCIO apps are not needed.
 LIST(APPEND _configure_options "-DOCIO_BUILD_APPS=OFF")
 
+LIST(APPEND _configure_options "-DCMAKE_INSTALL_RPATH=")
+
 IF(NOT RV_TARGET_WINDOWS)
   EXTERNALPROJECT_ADD(
     ${_target}

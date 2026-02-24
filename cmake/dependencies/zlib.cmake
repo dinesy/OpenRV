@@ -87,6 +87,8 @@ SET(_patch_command
     ${CMAKE_CURRENT_SOURCE_DIR}/patch/zconf.h.in_prevent_invalid_inclusions.patch
 )
 
+LIST(APPEND _configure_options "-DCMAKE_INSTALL_RPATH=")
+
 EXTERNALPROJECT_ADD(
   ${_target}
   URL ${_download_url}
